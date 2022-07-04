@@ -1,0 +1,8 @@
+prefix=/home/robot/test_ws/devel
+
+Name: scan_to_cloud_converter
+Description: Description of scan_to_cloud_converter
+Version: 0.3.2
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/robot/test_ws/install/setup.sh

@@ -1,0 +1,8 @@
+prefix=/home/robot/test_ws/devel
+
+Name: polar_scan_matcher
+Description: Description of polar_scan_matcher
+Version: 0.3.2
+Cflags: -I/home/robot/test_ws/src/scan_tools/polar_scan_matcher/include
+Libs: -L${prefix}/lib -lpolar_scan_matcher
+Requires: 
