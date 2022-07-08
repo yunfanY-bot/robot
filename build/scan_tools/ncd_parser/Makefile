@@ -56,37 +56,17 @@ CMAKE_BINARY_DIR = /home/robot/test_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
 
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
 
 # Special rule for the target install/local
 install/local: preinstall
@@ -100,6 +80,27 @@ install/local/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -110,6 +111,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target install
 install: preinstall
@@ -122,18 +134,6 @@ install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -182,306 +182,6 @@ ncd_parser/fast:
 	cd /home/robot/test_ws/build && $(MAKE) -f scan_tools/ncd_parser/CMakeFiles/ncd_parser.dir/build.make scan_tools/ncd_parser/CMakeFiles/ncd_parser.dir/build
 .PHONY : ncd_parser/fast
 
-# Convenience name for target.
-scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule:
-	cd /home/robot/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule
-.PHONY : scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-tf2_msgs_generate_messages_py: scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule
-
-.PHONY : tf2_msgs_generate_messages_py
-
-# fast build rule for target.
-tf2_msgs_generate_messages_py/fast:
-	cd /home/robot/test_ws/build && $(MAKE) -f scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_py.dir/build.make scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_py.dir/build
-.PHONY : tf2_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule:
-	cd /home/robot/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule
-.PHONY : scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-tf2_msgs_generate_messages_lisp: scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : tf2_msgs_generate_messages_lisp
-
-# fast build rule for target.
-tf2_msgs_generate_messages_lisp/fast:
-	cd /home/robot/test_ws/build && $(MAKE) -f scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build.make scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build
-.PHONY : tf2_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/robot/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule
-.PHONY : scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-tf2_msgs_generate_messages_nodejs: scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : tf2_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-tf2_msgs_generate_messages_nodejs/fast:
-	cd /home/robot/test_ws/build && $(MAKE) -f scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/build.make scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/build
-.PHONY : tf2_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_nodejs.dir/rule:
-	cd /home/robot/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_nodejs.dir/rule
-.PHONY : scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-tf_generate_messages_nodejs: scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_nodejs.dir/rule
-
-.PHONY : tf_generate_messages_nodejs
-
-# fast build rule for target.
-tf_generate_messages_nodejs/fast:
-	cd /home/robot/test_ws/build && $(MAKE) -f scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_nodejs.dir/build.make scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_nodejs.dir/build
-.PHONY : tf_generate_messages_nodejs/fast
-
-# Convenience name for target.
-scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_eus.dir/rule:
-	cd /home/robot/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_eus.dir/rule
-.PHONY : scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-tf2_msgs_generate_messages_eus: scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_eus.dir/rule
-
-.PHONY : tf2_msgs_generate_messages_eus
-
-# fast build rule for target.
-tf2_msgs_generate_messages_eus/fast:
-	cd /home/robot/test_ws/build && $(MAKE) -f scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_eus.dir/build.make scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_eus.dir/build
-.PHONY : tf2_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_lisp.dir/rule:
-	cd /home/robot/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_lisp.dir/rule
-.PHONY : scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-tf_generate_messages_lisp: scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_lisp.dir/rule
-
-.PHONY : tf_generate_messages_lisp
-
-# fast build rule for target.
-tf_generate_messages_lisp/fast:
-	cd /home/robot/test_ws/build && $(MAKE) -f scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_lisp.dir/build.make scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_lisp.dir/build
-.PHONY : tf_generate_messages_lisp/fast
-
-# Convenience name for target.
-scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_py.dir/rule:
-	cd /home/robot/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_py.dir/rule
-.PHONY : scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-actionlib_msgs_generate_messages_py: scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_py.dir/rule
-
-.PHONY : actionlib_msgs_generate_messages_py
-
-# fast build rule for target.
-actionlib_msgs_generate_messages_py/fast:
-	cd /home/robot/test_ws/build && $(MAKE) -f scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_py.dir/build.make scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_py.dir/build
-.PHONY : actionlib_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_cpp.dir/rule:
-	cd /home/robot/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_cpp.dir/rule
-.PHONY : scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-tf_generate_messages_cpp: scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_cpp.dir/rule
-
-.PHONY : tf_generate_messages_cpp
-
-# fast build rule for target.
-tf_generate_messages_cpp/fast:
-	cd /home/robot/test_ws/build && $(MAKE) -f scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_cpp.dir/build.make scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_cpp.dir/build
-.PHONY : tf_generate_messages_cpp/fast
-
-# Convenience name for target.
-scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_cpp.dir/rule:
-	cd /home/robot/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_cpp.dir/rule
-.PHONY : scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-actionlib_generate_messages_cpp: scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_cpp.dir/rule
-
-.PHONY : actionlib_generate_messages_cpp
-
-# fast build rule for target.
-actionlib_generate_messages_cpp/fast:
-	cd /home/robot/test_ws/build && $(MAKE) -f scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_cpp.dir/build.make scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_cpp.dir/build
-.PHONY : actionlib_generate_messages_cpp/fast
-
-# Convenience name for target.
-scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/rule:
-	cd /home/robot/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/rule
-.PHONY : scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-actionlib_msgs_generate_messages_cpp: scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : actionlib_msgs_generate_messages_cpp
-
-# fast build rule for target.
-actionlib_msgs_generate_messages_cpp/fast:
-	cd /home/robot/test_ws/build && $(MAKE) -f scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/build.make scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/build
-.PHONY : actionlib_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_eus.dir/rule:
-	cd /home/robot/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_eus.dir/rule
-.PHONY : scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-tf_generate_messages_eus: scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_eus.dir/rule
-
-.PHONY : tf_generate_messages_eus
-
-# fast build rule for target.
-tf_generate_messages_eus/fast:
-	cd /home/robot/test_ws/build && $(MAKE) -f scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_eus.dir/build.make scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_eus.dir/build
-.PHONY : tf_generate_messages_eus/fast
-
-# Convenience name for target.
-scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_eus.dir/rule:
-	cd /home/robot/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_eus.dir/rule
-.PHONY : scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-actionlib_generate_messages_eus: scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_eus.dir/rule
-
-.PHONY : actionlib_generate_messages_eus
-
-# fast build rule for target.
-actionlib_generate_messages_eus/fast:
-	cd /home/robot/test_ws/build && $(MAKE) -f scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_eus.dir/build.make scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_eus.dir/build
-.PHONY : actionlib_generate_messages_eus/fast
-
-# Convenience name for target.
-scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_lisp.dir/rule:
-	cd /home/robot/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_lisp.dir/rule
-.PHONY : scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-actionlib_generate_messages_lisp: scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_lisp.dir/rule
-
-.PHONY : actionlib_generate_messages_lisp
-
-# fast build rule for target.
-actionlib_generate_messages_lisp/fast:
-	cd /home/robot/test_ws/build && $(MAKE) -f scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_lisp.dir/build.make scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_lisp.dir/build
-.PHONY : actionlib_generate_messages_lisp/fast
-
-# Convenience name for target.
-scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_py.dir/rule:
-	cd /home/robot/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_py.dir/rule
-.PHONY : scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_py.dir/rule
-
-# Convenience name for target.
-tf_generate_messages_py: scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_py.dir/rule
-
-.PHONY : tf_generate_messages_py
-
-# fast build rule for target.
-tf_generate_messages_py/fast:
-	cd /home/robot/test_ws/build && $(MAKE) -f scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_py.dir/build.make scan_tools/ncd_parser/CMakeFiles/tf_generate_messages_py.dir/build
-.PHONY : tf_generate_messages_py/fast
-
-# Convenience name for target.
-scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/robot/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/rule
-.PHONY : scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-actionlib_msgs_generate_messages_nodejs: scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : actionlib_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-actionlib_msgs_generate_messages_nodejs/fast:
-	cd /home/robot/test_ws/build && $(MAKE) -f scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/build.make scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/build
-.PHONY : actionlib_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_nodejs.dir/rule:
-	cd /home/robot/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_nodejs.dir/rule
-.PHONY : scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-actionlib_generate_messages_nodejs: scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_nodejs.dir/rule
-
-.PHONY : actionlib_generate_messages_nodejs
-
-# fast build rule for target.
-actionlib_generate_messages_nodejs/fast:
-	cd /home/robot/test_ws/build && $(MAKE) -f scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_nodejs.dir/build.make scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_nodejs.dir/build
-.PHONY : actionlib_generate_messages_nodejs/fast
-
-# Convenience name for target.
-scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_py.dir/rule:
-	cd /home/robot/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_py.dir/rule
-.PHONY : scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_py.dir/rule
-
-# Convenience name for target.
-actionlib_generate_messages_py: scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_py.dir/rule
-
-.PHONY : actionlib_generate_messages_py
-
-# fast build rule for target.
-actionlib_generate_messages_py/fast:
-	cd /home/robot/test_ws/build && $(MAKE) -f scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_py.dir/build.make scan_tools/ncd_parser/CMakeFiles/actionlib_generate_messages_py.dir/build
-.PHONY : actionlib_generate_messages_py/fast
-
-# Convenience name for target.
-scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/rule:
-	cd /home/robot/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/rule
-.PHONY : scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-actionlib_msgs_generate_messages_eus: scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/rule
-
-.PHONY : actionlib_msgs_generate_messages_eus
-
-# fast build rule for target.
-actionlib_msgs_generate_messages_eus/fast:
-	cd /home/robot/test_ws/build && $(MAKE) -f scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/build.make scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/build
-.PHONY : actionlib_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/rule:
-	cd /home/robot/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/rule
-.PHONY : scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-actionlib_msgs_generate_messages_lisp: scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : actionlib_msgs_generate_messages_lisp
-
-# fast build rule for target.
-actionlib_msgs_generate_messages_lisp/fast:
-	cd /home/robot/test_ws/build && $(MAKE) -f scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/build.make scan_tools/ncd_parser/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/build
-.PHONY : actionlib_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule:
-	cd /home/robot/test_ws/build && $(MAKE) -f CMakeFiles/Makefile2 scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule
-.PHONY : scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-tf2_msgs_generate_messages_cpp: scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : tf2_msgs_generate_messages_cpp
-
-# fast build rule for target.
-tf2_msgs_generate_messages_cpp/fast:
-	cd /home/robot/test_ws/build && $(MAKE) -f scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/build.make scan_tools/ncd_parser/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/build
-.PHONY : tf2_msgs_generate_messages_cpp/fast
-
 src/ncd_parser.o: src/ncd_parser.cpp.o
 
 .PHONY : src/ncd_parser.o
@@ -515,34 +215,14 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... list_install_components"
-	@echo "... rebuild_cache"
-	@echo "... test"
-	@echo "... ncd_parser"
-	@echo "... tf2_msgs_generate_messages_py"
-	@echo "... tf2_msgs_generate_messages_lisp"
-	@echo "... install/local"
-	@echo "... tf2_msgs_generate_messages_nodejs"
-	@echo "... tf_generate_messages_nodejs"
-	@echo "... edit_cache"
-	@echo "... tf2_msgs_generate_messages_eus"
-	@echo "... tf_generate_messages_lisp"
-	@echo "... actionlib_msgs_generate_messages_py"
-	@echo "... tf_generate_messages_cpp"
-	@echo "... actionlib_generate_messages_cpp"
-	@echo "... install"
-	@echo "... actionlib_msgs_generate_messages_cpp"
-	@echo "... tf_generate_messages_eus"
-	@echo "... actionlib_generate_messages_eus"
-	@echo "... actionlib_generate_messages_lisp"
-	@echo "... tf_generate_messages_py"
-	@echo "... actionlib_msgs_generate_messages_nodejs"
-	@echo "... actionlib_generate_messages_nodejs"
-	@echo "... actionlib_generate_messages_py"
-	@echo "... actionlib_msgs_generate_messages_eus"
-	@echo "... actionlib_msgs_generate_messages_lisp"
 	@echo "... install/strip"
-	@echo "... tf2_msgs_generate_messages_cpp"
+	@echo "... install/local"
+	@echo "... test"
+	@echo "... list_install_components"
+	@echo "... edit_cache"
+	@echo "... rebuild_cache"
+	@echo "... ncd_parser"
+	@echo "... install"
 	@echo "... src/ncd_parser.o"
 	@echo "... src/ncd_parser.i"
 	@echo "... src/ncd_parser.s"

@@ -132,6 +132,8 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/robot/test_ws/build/gtest/cmake_install.cmake")
   include("/home/robot/test_ws/build/scan_tools/scan_tools/cmake_install.cmake")
+  include("/home/robot/test_ws/build/wpb_home_bringup/cmake_install.cmake")
+  include("/home/robot/test_ws/build/my_nav/cmake_install.cmake")
   include("/home/robot/test_ws/build/scan_tools/laser_scan_sparsifier/cmake_install.cmake")
   include("/home/robot/test_ws/build/scan_tools/laser_scan_splitter/cmake_install.cmake")
   include("/home/robot/test_ws/build/rplidar_ros/cmake_install.cmake")
@@ -140,6 +142,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/robot/test_ws/build/scan_tools/laser_scan_matcher/cmake_install.cmake")
   include("/home/robot/test_ws/build/scan_tools/polar_scan_matcher/cmake_install.cmake")
   include("/home/robot/test_ws/build/scan_tools/scan_to_cloud_converter/cmake_install.cmake")
+  include("/home/robot/test_ws/build/wpbh_local_planner/cmake_install.cmake")
 
 endif()
 
